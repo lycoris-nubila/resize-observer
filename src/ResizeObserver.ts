@@ -131,14 +131,6 @@ const broadcastActiveObservations = (): number => {
     return shallowestTargetDepth;
 };
 
-const deliverResizeLoopErrorNotification = () => {
-    const errorEvent = new (window as any).ErrorEvent('ResizeLoopError', {
-        message: 'ResizeObserver loop completed with undelivered notifications.',
-    });
-
-    window.dispatchEvent(errorEvent);
-};
-
 const calculateDepthForNode = (target: Node): number => {
     let depth = 0;
     while (target.parentNode) {
@@ -154,10 +146,6 @@ const notificationIteration = () => {
     while (hasActiveObservations()) {
         depth = broadcastActiveObservations();
         gatherActiveObservationsAtDepth(depth);
-    }
-
-    if (hasSkippedObservations()) {
-        deliverResizeLoopErrorNotification();
     }
 };
 

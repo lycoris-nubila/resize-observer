@@ -1,15 +1,16 @@
 {
-  "name": "resize-observer",
-  "version": "1.0.0",
+  "name": "@lycoris-nubila/resize-observer",
+  "version": "1.0.2",
   "description": "An implementation and polyfill of the Resize Observer draft.",
   "main": "lib/ResizeObserver.js",
   "unpkg": "dist/resize-observer.min.js",
   "typings": "lib/ResizeObserver.d.ts",
   "scripts": {
+    "npm-publish": "npm publish --access public",
     "browserify:dev": "browserify lib/index.js -o dist/resize-observer.js",
     "browserify:prod": "browserify lib/index.js | uglifyjs -c --mangle --safari10 --ecma 5 -o dist/resize-observer.min.js",
     "build": "yarn clean && tsc && yarn browserify:dev && yarn browserify:prod",
-    "clean": "rm -rf coverage dist lib",
+    "clean": "del /q /s dist lib",
     "coveralls": "yarn test-cov -- --report lcovonly && cat ./coverage/lcov.info | coveralls",
     "lint": "tslint -c tslint.json 'src/**/*.ts' 'test/**/*.js' && echo Lint passed.",
     "test": "yarn lint && yarn build && mocha",
@@ -19,7 +20,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pelotoncycle/resize-observer.git"
+    "url": "https://github.com/lycoris-nubila/resize-observer.git"
   },
   "keywords": [
     "ResizeObserver",
